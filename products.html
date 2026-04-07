@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="productsCss.css">
+  <title>Products - Industrial Screws Supplier</title>
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="navbar">
+  <div class="logo">SCREWS PRO</div>
+  <div class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="navbar-right">
+    <div class="search-box" id="responsiveSearchBox">
+      <input type="text" class="search-input" placeholder="Search for screws...">
+      <button class="search-btn" id="searchToggleBtn">🔍</button>
+    </div>
+    <a href="login.html" style="text-decoration: none;">
+      <button class="login-btn">Login</button>
+    </a>
+  </div>
+</div>
+
+<!-- 产品详情主容器 -->
+<div class="product-detail-container">
+  <!-- 产品分类导航 -->
+  <div class="product-categories">
+    <h3>Product Categories</h3>
+    <ul>
+      <li><a href="#stainless">Stainless Steel Screws</a></li>
+      <li><a href="#carbon">Carbon Steel Screws</a></li>
+      <li><a href="#brass">Brass Screws</a></li>
+      <li><a href="#plastic">Plastic Screws</a></li>
+      <li><a href="#custom">Custom Screws</a></li>
+      <li><a href="#machine">Machine Screws</a></li>
+    </ul>
+  </div>
+
+  <!-- 产品详情内容 -->
+  <div class="product-detail-content">
+    <!-- 1. 不锈钢螺丝详情 -->
+    <div class="product-detail-card" id="stainless">
+      <div class="product-detail-img">
+        <img src="../images/总览图.png" alt="Stainless Steel Hex Screw">
+      </div>
+      <div class="product-detail-info">
+        <h2>Stainless Steel Hex Screw M3-M10</h2>
+        <div class="price-tag">Price: €0.15 - €2.80 / piece</div>
+        <div class="product-specs">
+          <h4>Specifications</h4>
+          <ul>
+            <li>Material: 304/316 Stainless Steel</li>
+            <li>Size: M3, M4, M5, M6, M8, M10</li>
+            <li>Standard: DIN 933 / ISO 4017</li>
+            <li>Finish: Plain / Passivated / Polished</li>
+            <li>Application: Outdoor equipment, marine, construction</li>
+          </ul>
+        </div>
+        <div class="product-desc">
+          <h4>Description</h4>
+          <p>Corrosion resistant stainless steel hex screws, suitable for European outdoor equipment and marine applications. High durability and compatibility with European industry standards.</p>
+        </div>
+        <button class="add-to-inquiry">Add to Inquiry</button>
+      </div>
+    </div>
+
+    <!-- 2. 碳钢螺丝详情（可按需复制扩展） -->
+    <div class="product-detail-card" id="carbon">
+      <div class="product-detail-img">
+        <img src="../images/总览图.png" alt="Carbon Steel Bolt Screw">
+      </div>
+      <div class="product-detail-info">
+        <h2>Carbon Steel Bolt Screw</h2>
+        <div class="price-tag">Price: €0.12 - €3.50 / piece</div>
+        <div class="product-specs">
+          <h4>Specifications</h4>
+          <ul>
+            <li>Material: 8.8/10.9/12.9 Grade Carbon Steel</li>
+            <li>Size: M4-M20</li>
+            <li>Standard: DIN 931 / DIN 934</li>
+            <li>Finish: Zinc-plated / Hot-dip galvanized</li>
+            <li>Application: Heavy industrial machinery, construction</li>
+          </ul>
+        </div>
+        <div class="product-desc">
+          <h4>Description</h4>
+          <p>High strength industrial grade carbon steel bolt screws, designed for heavy load applications. Compliant with European industrial standards, ideal for manufacturing and construction projects.</p>
+        </div>
+        <button class="add-to-inquiry">Add to Inquiry</button>
+      </div>
+    </div>
+
+    <!-- 其他产品详情可按上述结构复制扩展 -->
+  </div>
+</div>
+
+<button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<!-- 搜索框交互逻辑（与首页一致） -->
+<script>
+  const searchBox = document.getElementById('responsiveSearchBox');
+  const searchToggleBtn = document.getElementById('searchToggleBtn');
+  searchToggleBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    searchBox.classList.toggle('active');
+    if (searchBox.classList.contains('active')) {
+      const searchInput = searchBox.querySelector('.search-input');
+      searchInput.focus();
+    }
+  });
+  document.addEventListener('click', function(e) {
+    const isClickInsideSearch = searchBox.contains(e.target);
+    if (!isClickInsideSearch && searchBox.classList.contains('active')) {
+      searchBox.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

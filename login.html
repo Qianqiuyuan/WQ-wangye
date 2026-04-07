@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入登录/注册通用样式 -->
+    <link rel="stylesheet" href="loginCss.css">
+    <title>Login - Industrial Screws Supplier</title>
+</head>
+<body>
+<!-- 导航栏：与首页保持一致，保证样式统一 -->
+<div class="navbar">
+    <div class="logo">SCREWS PRO</div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="navbar-right">
+        <div class="search-box" id="responsiveSearchBox">
+            <input type="text" class="search-input" placeholder="Search for screws...">
+            <button class="search-btn" id="searchToggleBtn">🔍</button>
+        </div>
+        <!-- 修复：移除a标签嵌套，直接在按钮上添加跳转逻辑 -->
+        <button class="login-btn" onclick="window.location.href='./login.html'">Login</button>
+    </div>
+</div>
+
+<!-- 登录表单容器 -->
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">User Login</h2>
+        <!-- 登录表单 -->
+        <form class="auth-form" id="loginForm">
+            <!-- 账号输入框 -->
+            <div class="form-group">
+                <label for="regAccount" class="form-label">Account (Phone/Email)</label>
+                <div class="input-wrapper">
+                    <input
+                            type="text"
+                            id="regAccount"
+                            class="form-input"
+                            placeholder="e.g. 1234567890 or example@email.com"
+                            pattern="[0-9@._\-+]+"
+                            title="Account can only contain numbers and symbols (@ . _ - +)"
+                            required
+                    >
+                </div>
+            </div>
+
+            <!-- 密码输入框 -->
+            <div class="form-group">
+                <label for="regPassword" class="form-label">Password</label>
+                <div class="input-wrapper password-wrapper">
+                    <input
+                            type="password"
+                            id="regPassword"
+                            class="form-input password-input"
+                            placeholder="At least 8 chars (letters, numbers, symbols)"
+                            pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'\\|,.<>/?]).{8,}$"
+                            title="Password must be at least 8 characters and contain letters, numbers and symbols"
+                            required
+                    >
+                    <button type="button" class="password-toggle" id="regPwdToggle">👁️</button>
+                </div>
+            </div>
+
+            <!-- 登录按钮 -->
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
+
+        <!-- 注册跳转链接 -->
+        <div class="auth-link">
+            Don't have an account? <a href="register.html">Register now</a>
+        </div>
+    </div>
+</div>
+
+<!-- 返回顶部按钮 -->
+<button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+    // 密码显示/隐藏逻辑 - 密码框
+    const regPwdToggle = document.getElementById('regPwdToggle');
+    const regPassword = document.getElementById('regPassword');
+    regPwdToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const type = regPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        regPassword.setAttribute('type', type);
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+
+    // 密码显示/隐藏逻辑 - 确认密码框
+    const regConfirmPwdToggle = document.getElementById('regConfirmPwdToggle');
+    const regConfirmPwd = document.getElementById('regConfirmPwd');
+    regConfirmPwdToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const type = regConfirmPwd.getAttribute('type') === 'password' ? 'text' : 'password';
+        regConfirmPwd.setAttribute('type', type);
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+
+    // 登录表单提交验证（优化版）
+    const loginForm = document.getElementById('loginForm');
+    const loginAccount = document.getElementById('loginAccount');
+    const loginPwd = document.getElementById('loginPassword');
+
+    // 实时验证输入
+    [loginAccount, loginPwd].forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('input-error');
+        });
+    });
+
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // 阻止默认提交
+        let isValid = true;
+
+        // 验证账号
+        if (!loginAccount.validity.valid) {
+            loginAccount.classList.add('input-error');
+            isValid = false;
+        }
+
+        // 验证密码
+        if (!loginPwd.validity.valid) {
+            loginPwd.classList.add('input-error');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            return; // 验证失败不提交
+        }
+
+        const account = loginAccount.value.trim();
+        const password = loginPwd.value.trim();
+
+        // 简单验证提示
+        if (!account) {
+            alert('Please enter your account');
+            loginAccount.focus();
+            return;
+        }
+        if (!password) {
+            alert('Please enter your password');
+            loginPwd.focus();
+            return;
+        }
+
+        // 模拟登录成功（实际项目替换为接口请求）
+        alert('Login successful! Welcome back!');
+        window.location.href = 'index.html'; // 登录后跳回首页
+    });
+
+    // 新增：页面滚动时控制返回顶部按钮显示/隐藏
+    window.addEventListener('scroll', function() {
+        const backToTopBtn = document.querySelector('.back-to-top');
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    // 初始化隐藏返回顶部按钮（页面顶部时）
+    document.addEventListener('DOMContentLoaded', function() {
+        const backToTopBtn = document.querySelector('.back-to-top');
+        if (window.scrollY <= 300) {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>

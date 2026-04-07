@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="indexCss.css">
+  <title>Industrial Screws - Professional Screw Supplier</title>
+</head>
+<body>
+<!-- 导航栏：结构不变，仅布局由CSS修复 -->
+<div class="navbar">
+  <div class="logo">SCREWS PRO</div>
+  <div class="nav-menu">
+    <a href="./index.html">Home</a>
+    <a href="./products.html">Products</a>
+    <a href="./about.html">About</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+  <div class="navbar-right">
+    <div class="search-box" id="responsiveSearchBox">
+      <input type="text" class="search-input" placeholder="Search for screws...">
+      <button class="search-btn" id="searchToggleBtn">🔍</button>
+    </div>
+    <a href="./login.html" style="text-decoration: none;">
+      <button class="login-btn">Login</button>
+    </a>
+  </div>
+</div>
+<!-- 以下商品展示、返回顶部、JS代码均保持原有不变 -->
+<div class="container">
+  <h2 class="section-title">Our Industrial Screws</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="../images/总览图.png" class="product-img" alt="Screw">
+      <div class="product-info">
+        <h3 class="product-name">Stainless Steel Hex Screw M3-M10</h3>
+        <div class="product-price">€0.15 - €2.80</div>
+        <p class="product-desc">Corrosion resistant, suitable for European outdoor equipment</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="../images/总览图.png" class="product-img" alt="Screw">
+      <div class="product-info">
+        <h3 class="product-name">Carbon Steel Bolt Screw</h3>
+        <div class="product-price">€0.12 - €3.50</div>
+        <p class="product-desc">High strength, industrial grade fasteners</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="../images/总览图.png" class="product-img" alt="Screw">
+      <div class="product-info">
+        <h3 class="product-name">Brass Precision Screw</h3>
+        <div class="product-price">€0.20 - €4.20</div>
+        <p class="product-desc">Conductive, ideal for electrical applications</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="../images/总览图.png" class="product-img" alt="Screw">
+      <div class="product-info">
+        <h3 class="product-name">Self-Tapping Plastic Screw</h3>
+        <div class="product-price">€0.08 - €1.50</div>
+        <p class="product-desc">Easy installation, for plastic & wood materials</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="../images/总览图.png" class="product-img" alt="Screw">
+      <div class="product-info">
+        <h3 class="product-name">Customized Special Screw</h3>
+        <div class="product-price">€0.50 - €10.00</div>
+        <p class="product-desc">OEM/ODM service, accept European standard drawings</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="../images/总览图.png" class="product-img" alt="Screw">
+      <div class="product-info">
+        <h3 class="product-name">Precision Machine Screw</h3>
+        <div class="product-price">€0.10 - €2.20</div>
+        <p class="product-desc">DIN standard, compatible with European machines</p>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+<script>
+  const searchBox = document.getElementById('responsiveSearchBox');
+  const searchToggleBtn = document.getElementById('searchToggleBtn');
+  searchToggleBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    searchBox.classList.toggle('active');
+    if (searchBox.classList.contains('active')) {
+      const searchInput = searchBox.querySelector('.search-input');
+      searchInput.focus();
+    }
+  });
+  document.addEventListener('click', function(e) {
+    const isClickInsideSearch = searchBox.contains(e.target);
+    if (!isClickInsideSearch && searchBox.classList.contains('active')) {
+      searchBox.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
